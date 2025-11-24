@@ -1,0 +1,77 @@
+﻿<Page x:Class="LaundryManagementSystem.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LaundryManagementSystem.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainPage">
+
+    <Page.Resources>
+        <Style x:Key="NavButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="Margin" Value="5,0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#106EBE"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Верхняя панель навигации -->
+        <Border Grid.Row="0" Background="#0078D4" Padding="15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="🏢 Химчистка" 
+                           Foreground="White" FontSize="18" FontWeight="Bold"
+                           VerticalAlignment="Center"/>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="btnOrders" Content="📋 Заказы" Click="btnOrders_Click" 
+                            Style="{StaticResource NavButtonStyle}"/>
+                    <Button x:Name="btnClients" Content="👥 Клиенты" Click="btnClients_Click" 
+                            Style="{StaticResource NavButtonStyle}"/>
+                    <Button x:Name="btnServices" Content="🛠️ Услуги" Click="btnServices_Click" 
+                            Style="{StaticResource NavButtonStyle}"/>
+                    <Button x:Name="btnMaterials" Content="📦 Материалы" Click="btnMaterials_Click" 
+                            Style="{StaticResource NavButtonStyle}"/>
+                    <Button x:Name="btnReports" Content="📊 Отчеты" Click="btnReports_Click"
+                            Style="{StaticResource NavButtonStyle}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Text="{Binding UserInfo}" Foreground="White" 
+                               VerticalAlignment="Center" Margin="0,0,15,0"/>
+                    <Button x:Name="Logout" Content="🚪 Выход" Click="Logout_Click" 
+                            Background="Transparent" Foreground="White" 
+                            BorderBrush="White" Padding="10,5"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Контент страницы -->
+        <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+    </Grid>
+
+    
+   
+    </Page>

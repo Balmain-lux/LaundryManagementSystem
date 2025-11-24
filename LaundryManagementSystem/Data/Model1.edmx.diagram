@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3220bbd741904799b7f3ff96ccdf2334" Name="Diagram1">
+        <EntityTypeShape EntityType="LaundryServiceModel.Clients" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaundryServiceModel.FabricTypes" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaundryServiceModel.Materials" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaundryServiceModel.MaterialUsage" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaundryServiceModel.Notifications" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaundryServiceModel.OrderPhotos" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaundryServiceModel.Orders" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaundryServiceModel.OrderStatuses" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaundryServiceModel.Services" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaundryServiceModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaundryServiceModel.Users" Width="1.5" PointX="7.75" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="LaundryServiceModel.FK_Orders_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="LaundryServiceModel.FK_Orders_FabricTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="LaundryServiceModel.FK_MaterialUsage_Materials" ManuallyRouted="false" />
+        <AssociationConnector Association="LaundryServiceModel.FK_MaterialUsage_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="LaundryServiceModel.FK_Notifications_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="LaundryServiceModel.FK_OrderPhotos_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="LaundryServiceModel.FK_Orders_OrderStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="LaundryServiceModel.FK_Orders_Services" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

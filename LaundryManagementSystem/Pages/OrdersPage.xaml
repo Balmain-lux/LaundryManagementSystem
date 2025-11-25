@@ -19,8 +19,14 @@
             <Button x:Name="NewOrder" Content="➕ Новый заказ" Click="NewOrder_Click"
                     Padding="15,8" Background="#28a745" Foreground="White" 
                     FontWeight="Bold" BorderThickness="0" Cursor="Hand"/>
-            <Button x:Name="Refresh" Content="🔄 Обновить" Click="Refresh_Click" 
+            <Button x:Name="EditOrder" Content="✏️ Редактировать" Click="EditOrder_Click" 
                     Padding="15,8" Background="#17a2b8" Foreground="White" 
+                    FontWeight="Bold" BorderThickness="0" Cursor="Hand" Margin="10,0,0,0"/>
+            <Button x:Name="DeleteOrder" Content="🗑️ Удалить" Click="DeleteOrder_Click"
+                    Padding="15,8" Background="#dc3545" Foreground="White" 
+                    FontWeight="Bold" BorderThickness="0" Cursor="Hand" Margin="10,0,0,0"/>
+            <Button x:Name="Refresh" Content="🔄 Обновить" Click="Refresh_Click" 
+                    Padding="15,8" Background="#6c757d" Foreground="White" 
                     FontWeight="Bold" BorderThickness="0" Cursor="Hand" Margin="10,0,0,0"/>
         </StackPanel>
 

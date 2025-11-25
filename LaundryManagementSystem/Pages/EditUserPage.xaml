@@ -1,0 +1,67 @@
+﻿<Page x:Class="LaundryManagementSystem.Pages.EditUserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LaundryManagementSystem.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EditUserPage">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Редактирование пользователя" 
+                   FontSize="18" FontWeight="Bold" Margin="0,0,0,20"/>
+
+        <TextBlock Grid.Row="1" Text="ID пользователя:" FontWeight="Bold"/>
+        <TextBlock Grid.Row="1" x:Name="txtUserID" FontSize="14" FontWeight="Bold"
+                   Foreground="Blue" Margin="0,25,0,15" HorizontalAlignment="Right"/>
+
+        <TextBlock Grid.Row="2" Text="ФИО:" FontWeight="Bold"/>
+        <TextBox Grid.Row="2" x:Name="txtFullName" Height="35" Margin="0,25,0,15" 
+                 Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
+
+        <TextBlock Grid.Row="3" Text="Логин:" FontWeight="Bold"/>
+        <TextBox Grid.Row="3" x:Name="txtUsername" Height="35" Margin="0,25,0,15" 
+                 Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
+
+        <TextBlock Grid.Row="4" Text="Новый пароль (оставьте пустым, если не меняется):" 
+                   FontWeight="Bold" TextWrapping="Wrap"/>
+        <PasswordBox Grid.Row="4" x:Name="txtPassword" Height="35" Margin="0,25,0,15" 
+                     Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
+
+        <TextBlock Grid.Row="5" Text="Роль:" FontWeight="Bold"/>
+        <ComboBox Grid.Row="5" x:Name="cmbRole" Height="35" Margin="0,25,0,20"
+                  Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC">
+            <ComboBoxItem Content="Receptionist"/>
+            <ComboBoxItem Content="Admin"/>
+        </ComboBox>
+
+        <TextBlock Grid.Row="6" x:Name="txtMessage" Foreground="Green" 
+                   TextWrapping="Wrap" Margin="0,10,0,0" HorizontalAlignment="Center"
+                   TextAlignment="Center" FontSize="12" FontWeight="Bold"/>
+
+        <TextBlock Grid.Row="6" x:Name="txtError" Foreground="Red" 
+                   TextWrapping="Wrap" Margin="0,15,0,0" HorizontalAlignment="Center"
+                   TextAlignment="Center" FontSize="12"/>
+
+        <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="SaveUser" Content="💾 Сохранить" Click="SaveUser_Click"
+                    Padding="20,10" Margin="5" Background="#28a745" Foreground="White" 
+                    FontWeight="Bold" BorderThickness="0" Cursor="Hand"/>
+            <Button x:Name="Cancel" Content="❌ Отмена" Click="Cancel_Click" 
+                    Padding="20,10" Margin="5" Background="#dc3545" Foreground="White"
+                    FontWeight="Bold" BorderThickness="0" Cursor="Hand"/>
+        </StackPanel>
+    </Grid>
+</Page>

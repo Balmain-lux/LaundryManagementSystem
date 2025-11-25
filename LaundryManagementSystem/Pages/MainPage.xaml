@@ -54,6 +54,8 @@
                             Style="{StaticResource NavButtonStyle}"/>
                     <Button x:Name="btnMaterials" Content="📦 Материалы" Click="btnMaterials_Click" 
                             Style="{StaticResource NavButtonStyle}"/>
+                    <Button x:Name="btnUsers" Content="👤 Пользователи" Click="btnUsers_Click" 
+                            Style="{StaticResource NavButtonStyle}"/>
                     <Button x:Name="btnReports" Content="📊 Отчеты" Click="btnReports_Click"
                             Style="{StaticResource NavButtonStyle}"/>
                 </StackPanel>

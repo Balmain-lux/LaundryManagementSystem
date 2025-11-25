@@ -50,5 +50,10 @@ namespace LaundryManagementSystem.Pages
                 txtError.Text = "Неверный логин или пароль";
             }
         }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.MainFrame.Navigate(new RegisterPage());
+        }
     }
 }

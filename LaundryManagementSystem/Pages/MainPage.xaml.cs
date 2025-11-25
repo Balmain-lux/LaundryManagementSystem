@@ -107,6 +107,9 @@ namespace LaundryManagementSystem.Pages
             MainWindow.Instance.NavigateToLoginPage();
         }
 
-        
+        private void btnUsers_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.MainFrame.Navigate(new UsersManagementPage());
+        }
     }
 }

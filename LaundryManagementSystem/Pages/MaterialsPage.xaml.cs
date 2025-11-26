@@ -21,6 +21,7 @@ namespace LaundryManagementSystem.Pages
     /// </summary>
     public partial class MaterialsPage : Page
     {
+        private Materials selectedMaterial;
         public MaterialsPage()
         {
             InitializeComponent();
@@ -41,8 +42,6 @@ namespace LaundryManagementSystem.Pages
                         m.CurrentStock,
                         m.MinStock,
                         m.UnitPrice,
-                        StockStatus = m.CurrentStock <= m.MinStock ? "НИЗКИЙ" :
-                                     m.CurrentStock <= m.MinStock * 2 ? "НОРМА" : "ВНИМАНИЕ"
                     })
                     .ToList();
 
@@ -54,43 +53,89 @@ namespace LaundryManagementSystem.Pages
             }
         }
 
+        private void AddMaterial_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.MainFrame.Navigate(new EditMaterialPage());
+        }
+
+        private void EditMaterial_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedMaterial == null)
+            {
+                MainWindow.Instance.ShowError("Выберите материал для редактирования");
+                return;
+            }
+
+            MainWindow.Instance.MainFrame.Navigate(new EditMaterialPage(selectedMaterial));
+        }
+
+        private void DeleteMaterial_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedMaterial == null)
+            {
+                MainWindow.Instance.ShowError("Выберите материал для удаления");
+                return;
+            }
+
+            // Проверяем, используется ли материал в заказах
+            var materialUsage = Connection.entities.MaterialUsage
+                .Any(mu => mu.MaterialID == selectedMaterial.MaterialID);
+
+            if (materialUsage)
+            {
+                MainWindow.Instance.ShowError("Нельзя удалить материал, который используется в заказах");
+                return;
+            }
+
+            var result = MessageBox.Show(
+                $"Вы уверены, что хотите удалить материал?\nНазвание: {selectedMaterial.MaterialName}",
+                "Подтверждение удаления",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Connection.entities.Materials.Remove(selectedMaterial);
+                    Connection.entities.SaveChanges();
+
+                    MainWindow.Instance.ShowMessage($"Материал {selectedMaterial.MaterialName} успешно удален");
+                    LoadMaterials();
+                    selectedMaterial = null;
+                }
+                catch (System.Exception ex)
+                {
+                    MainWindow.Instance.ShowError($"Ошибка удаления материала: {ex.Message}");
+                }
+            }
+        }
+
+        private void Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            LoadMaterials();
+            MainWindow.Instance.ShowMessage("Данные обновлены");
+        }
+
         private void dgMaterials_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Обработка выбора материала
-        }
-
-        private void ShowUsageStats_Click(object sender, RoutedEventArgs e)
-        {
-            try
+            if (dgMaterials.SelectedItem != null)
             {
-                var usageStats = Connection.entities.MaterialUsage
-                    .GroupBy(mu => mu.Materials.MaterialName)
-                    .Select(g => new
-                    {
-                        Material = g.Key,
-                        TotalUsed = g.Sum(x => x.Quantity),
-                        LastUsed = g.Max(x => x.UsageDate)
-                    })
-                    .OrderByDescending(x => x.TotalUsed)
-                    .ToList();
-
-                string statsMessage = "Статистика использования материалов:\n\n";
-                foreach (var stat in usageStats)
-                {
-                    statsMessage += $"{stat.Material}: {stat.TotalUsed} {GetUnit(stat.Material)}\n";
-                }
-
-                MainWindow.Instance.ShowMessage(statsMessage, "Статистика использования");
-            }
-            catch (System.Exception ex)
-            {
-                MainWindow.Instance.ShowError($"Ошибка загрузки статистики: {ex.Message}");
+                var selectedItem = dgMaterials.SelectedItem;
+                var materialID = (int)selectedItem.GetType().GetProperty("MaterialID").GetValue(selectedItem);
+                selectedMaterial = Connection.entities.Materials.FirstOrDefault(m => m.MaterialID == materialID);
             }
         }
+
         private string GetUnit(string materialName)
         {
             var material = Connection.entities.Materials.FirstOrDefault(m => m.MaterialName == materialName);
             return material?.Unit ?? "ед.";
+        }
+
+        private void GoToMainPage_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.MainFrame.Navigate(new MainPage());
         }
     }
 }

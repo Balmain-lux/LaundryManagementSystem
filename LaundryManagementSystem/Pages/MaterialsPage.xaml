@@ -18,31 +18,65 @@
         <!-- Заголовок -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,15">
             <TextBlock Text="Управление материалами" 
-                   FontSize="18" FontWeight="Bold" VerticalAlignment="Center"/>
-            <TextBlock Text=" (Только для администратора)" 
-                   Foreground="Red" FontWeight="Bold" 
-                   Margin="10,0,0,0" VerticalAlignment="Center"/>
+                       FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+            
+        </StackPanel>
+        
+        <TextBlock Text=" (Только для администратора)" 
+           Foreground="Red" FontWeight="Bold" 
+           Margin="10,20,0,0" VerticalAlignment="Center"/>
+
+        <!-- Панель управления -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,15">
+            <Button x:Name="AddMaterial" Content="➕ Добавить материал" Click="AddMaterial_Click" 
+                    Padding="15,8" Background="#28a745" Foreground="White" 
+                    FontWeight="Bold" BorderThickness="0" Cursor="Hand"/>
+            <Button x:Name="EditMaterial" Content="✏️ Редактировать" Click="EditMaterial_Click"
+                    Padding="15,8" Background="#17a2b8" Foreground="White" 
+                    FontWeight="Bold" BorderThickness="0" Cursor="Hand" Margin="10,0,0,0"/>
+            <Button x:Name="DeleteMaterial" Content="🗑️ Удалить" Click="DeleteMaterial_Click"
+                    Padding="15,8" Background="#dc3545" Foreground="White" 
+                    FontWeight="Bold" BorderThickness="0" Cursor="Hand" Margin="10,0,0,0"/>
+            <Button x:Name="Refresh" Content="🔄 Обновить" Click="Refresh_Click"
+                    Padding="15,8" Background="#6c757d" Foreground="White" 
+                    FontWeight="Bold" BorderThickness="0" Cursor="Hand" Margin="10,0,0,0"/>
         </StackPanel>
 
         <!-- Список материалов -->
         <DataGrid Grid.Row="1" x:Name="dgMaterials" 
-              AutoGenerateColumns="False" IsReadOnly="True"
-              SelectionMode="Single" SelectionChanged="dgMaterials_SelectionChanged">
+                  AutoGenerateColumns="False" IsReadOnly="True"
+                  SelectionMode="Single" SelectionChanged="dgMaterials_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Материал" Binding="{Binding MaterialName}" Width="200"/>
                 <DataGridTextColumn Header="Единица" Binding="{Binding Unit}" Width="80"/>
                 <DataGridTextColumn Header="Остаток" Binding="{Binding CurrentStock}" Width="80"/>
                 <DataGridTextColumn Header="Мин.запас" Binding="{Binding MinStock}" Width="80"/>
                 <DataGridTextColumn Header="Цена за ед." Binding="{Binding UnitPrice, StringFormat={}{0:C}}" Width="90"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding StockStatus}" Width="100"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding StockStatus}" Width="100">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Foreground" Value="Green"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding StockStatus}" Value="НИЗКИЙ">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding StockStatus}" Value="ВНИМАНИЕ">
+                                    <Setter Property="Foreground" Value="Orange"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 
-        <!-- Панель управления -->
+        <!-- Панель статистики -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,15,0,0">
-            <Button x:Name="ShowUsageStats" Content="📊 Статистика использования" Click="ShowUsageStats_Click" 
-                Padding="10,5" Background="#17a2b8" Foreground="White" 
-                FontWeight="Bold" BorderThickness="0" Cursor="Hand"/>
+            <Button x:Name="GoToMainPage" Content="🏠 На главную" Click="GoToMainPage_Click" 
+                    Padding="10,5" Background="#6f42c1" Foreground="White" 
+                    FontWeight="Bold" BorderThickness="0" Cursor="Hand" Margin="10,0,0,0"/>
         </StackPanel>
     </Grid>
 </Page>

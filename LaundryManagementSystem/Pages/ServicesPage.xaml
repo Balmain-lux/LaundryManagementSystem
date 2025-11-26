@@ -12,22 +12,57 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- Заголовок -->
         <TextBlock Grid.Row="0" Text="Услуги химчистки" 
                    FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
 
+        <!-- Панель управления -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,15">
+            <Button x:Name="AddService" Content="➕ Добавить услугу" Click="AddService_Click"
+                    Padding="15,8" Background="#28a745" Foreground="White" 
+                    FontWeight="Bold" BorderThickness="0" Cursor="Hand"/>
+            <Button x:Name="EditService" Content="✏️ Редактировать" Click="EditService_Click" 
+                    Padding="15,8" Background="#17a2b8" Foreground="White" 
+                    FontWeight="Bold" BorderThickness="0" Cursor="Hand" Margin="10,0,0,0"/>
+            <Button x:Name="DeleteService" Content="🗑️ Удалить" Click="DeleteService_Click"
+                    Padding="15,8" Background="#dc3545" Foreground="White" 
+                    FontWeight="Bold" BorderThickness="0" Cursor="Hand" Margin="10,0,0,0"/>
+            <Button x:Name="Refresh" Content="🔄 Обновить" Click="Refresh_Click" 
+                    Padding="15,8" Background="#6c757d" Foreground="White" 
+                    FontWeight="Bold" BorderThickness="0" Cursor="Hand" Margin="10,0,0,0"/>
+            <Button x:Name="GoToMainPage" Content="🏠 На главную" Click="GoToMainPage_Click" 
+                    Padding="15,8" Background="#6f42c1" Foreground="White" 
+                    FontWeight="Bold" BorderThickness="0" Cursor="Hand" Margin="10,0,0,0"/>
+        </StackPanel>
+
         <!-- Список услуг -->
         <DataGrid Grid.Row="1" x:Name="dgServices" 
                   AutoGenerateColumns="False" IsReadOnly="True"
-                  SelectionMode="Single">
+                  SelectionMode="Single" SelectionChanged="dgServices_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Услуга" Binding="{Binding ServiceName}" Width="200"/>
                 <DataGridTextColumn Header="Базовая цена" Binding="{Binding BasePrice, StringFormat={}{0:C}}" Width="100"/>
                 <DataGridTextColumn Header="Срок (дни)" Binding="{Binding StandardTerm}" Width="80"/>
                 <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="300"/>
-                <DataGridTextColumn Header="Популярность" Binding="{Binding Popularity}" Width="100"/>
+                <DataGridTextColumn Header="Популярность" Binding="{Binding Popularity}" Width="100">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Popularity}" Value="0">
+                                    <Setter Property="Foreground" Value="Gray"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Popularity}" Value="">
+                                    <Setter Property="Foreground" Value="Green"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -132,7 +132,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\EditClientPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EditMaterialPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\EditOrderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EditServicePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -181,8 +193,17 @@
     <Compile Include="Pages\ClientsPage.xaml.cs">
       <DependentUpon>ClientsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\EditClientPage.xaml.cs">
+      <DependentUpon>EditClientPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditMaterialPage.xaml.cs">
+      <DependentUpon>EditMaterialPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\EditOrderPage.xaml.cs">
       <DependentUpon>EditOrderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditServicePage.xaml.cs">
+      <DependentUpon>EditServicePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\EditUserPage.xaml.cs">
       <DependentUpon>EditUserPage.xaml</DependentUpon>

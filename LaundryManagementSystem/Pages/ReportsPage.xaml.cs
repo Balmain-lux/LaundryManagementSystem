@@ -56,6 +56,7 @@ namespace LaundryManagementSystem.Pages
                     .GroupBy(o => new { Year = o.CreateDate.Value.Year, Month = o.CreateDate.Value.Month })
                     .Select(g => new
                     {
+
                         Period = new DateTime(g.Key.Year, g.Key.Month, 1),
                         TotalIncome = g.Sum(o => o.TotalPrice),
                         OrderCount = g.Count(),

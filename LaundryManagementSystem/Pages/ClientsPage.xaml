@@ -12,16 +12,36 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- Заголовок -->
         <TextBlock Grid.Row="0" Text="База клиентов" 
-                   FontSize="18" FontWeight="Bold" Margin="0,0,0,15"/>
+                   FontSize="15" FontWeight="Bold" Margin="0,0,0,15"/>
+
+        <!-- Панель управления -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,15">
+            <Button x:Name="AddClient" Content="➕ Добавить клиента" Click="AddClient_Click"
+                    Padding="15,8" Background="#28a745" Foreground="White" 
+                    FontWeight="Bold" BorderThickness="0" Cursor="Hand"/>
+            <Button x:Name="EditClient" Content="✏️ Редактировать" Click="EditClient_Click"
+                    Padding="15,8" Background="#17a2b8" Foreground="White" 
+                    FontWeight="Bold" BorderThickness="0" Cursor="Hand" Margin="10,0,0,0"/>
+            <Button x:Name="DeleteClient" Content="🗑️ Удалить" Click="DeleteClient_Click"
+                    Padding="15,8" Background="#dc3545" Foreground="White" 
+                    FontWeight="Bold" BorderThickness="0" Cursor="Hand" Margin="10,0,0,0"/>
+            <Button x:Name="Refresh" Content="🔄 Обновить" Click="Refresh_Click"
+                    Padding="15,8" Background="#6c757d" Foreground="White" 
+                    FontWeight="Bold" BorderThickness="0" Cursor="Hand" Margin="10,0,0,0"/>
+            <Button x:Name="GoToMainPage" Content="🏠 На главную" Click="GoToMainPage_Click"
+                    Padding="15,8" Background="#6f42c1" Foreground="White" 
+                    FontWeight="Bold" BorderThickness="0" Cursor="Hand" Margin="10,0,0,0"/>
+        </StackPanel>
 
         <!-- Список клиентов -->
         <DataGrid Grid.Row="1" x:Name="dgClients" 
                   AutoGenerateColumns="False" IsReadOnly="True"
-                  SelectionMode="Single">
+                  SelectionMode="Single" SelectionChanged="dgClients_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="200"/>
                 <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="120"/>

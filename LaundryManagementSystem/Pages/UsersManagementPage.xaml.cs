@@ -124,5 +124,10 @@ namespace LaundryManagementSystem.Pages
                 }
             }
         }
+
+        private void GoToMainPage_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.MainFrame.Navigate(new MainPage());
+        }
     }
 }

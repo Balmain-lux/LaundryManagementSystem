@@ -18,10 +18,11 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,15">
             <TextBlock Text="Управление пользователями" 
                        FontSize="18" FontWeight="Bold" VerticalAlignment="Center"/>
-            <TextBlock Text=" (Только для администратора)" 
-                       Foreground="Red" FontWeight="Bold" 
-                       Margin="10,0,0,0" VerticalAlignment="Center"/>
+            
         </StackPanel>
+        <TextBlock Text=" (Только для администратора)" 
+           Foreground="Red" FontWeight="Bold" 
+           Margin="10,20,0,0" VerticalAlignment="Center"/>
 
         <!-- Панель кнопок -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,15">
@@ -30,6 +31,9 @@
                     FontWeight="Bold" BorderThickness="0" Cursor="Hand"/>
             <Button x:Name="Refresh" Content="🔄 Обновить" Click="Refresh_Click" 
                     Padding="15,8" Background="#17a2b8" Foreground="White" 
+                    FontWeight="Bold" BorderThickness="0" Cursor="Hand" Margin="10,0,0,0"/>
+            <Button x:Name="GoToMainPage" Content="🏠 На главную" Click="GoToMainPage_Click"
+                    Padding="15,8" Background="#6f42c1" Foreground="White" 
                     FontWeight="Bold" BorderThickness="0" Cursor="Hand" Margin="10,0,0,0"/>
         </StackPanel>
 

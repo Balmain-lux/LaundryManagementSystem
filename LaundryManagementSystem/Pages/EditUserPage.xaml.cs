@@ -110,6 +110,36 @@ namespace LaundryManagementSystem.Pages
                     currentUser.Password = password;
                 }
 
+                // Если пользователь меняется с User на другую роль или наоборот, 
+                // нужно обновить клиентскую запись
+                if (currentUser.Role == "User" && role != "User")
+                {
+                    // Удаляем клиентскую запись, если она есть
+                    var client = Connection.entities.Clients.FirstOrDefault(c => c.Phone == username);
+                    if (client != null)
+                    {
+                        // Проверяем, нет ли у клиента заказов
+                        if (client.Orders.Any())
+                        {
+                            ShowError("Нельзя изменить роль пользователя, у которого есть активные заказы");
+                            return;
+                        }
+                        Connection.entities.Clients.Remove(client);
+                    }
+                }
+                else if (currentUser.Role != "User" && role == "User")
+                {
+                    // Создаем клиентскую запись для нового пользователя
+                    var client = new Clients
+                    {
+                        FullName = fullName,
+                        Phone = username,
+                        RegistrationDate = DateTime.Now,
+                        BonusPoints = 0
+                    };
+                    Connection.entities.Clients.Add(client);
+                }
+
                 Connection.entities.SaveChanges();
 
                 ShowSuccess($"Данные пользователя {username} успешно обновлены");

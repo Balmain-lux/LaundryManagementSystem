@@ -50,19 +50,53 @@ namespace LaundryManagementSystem.Pages
         private void InitializeUserInfo()
         {
             var user = MainWindow.Instance.CurrentUser;
-            UserInfo = $"{user.FullName} ({user.Role})";
+            UserInfo = $"{user.FullName} ({GetRoleDisplayName(user.Role)})";
 
             // Скрываем кнопки в зависимости от роли
-            if (user.Role != "Admin")
+            if (user.Role == "User")
             {
+                // Пользователь может только просматривать свои заказы
                 btnMaterials.Visibility = Visibility.Collapsed;
                 btnReports.Visibility = Visibility.Collapsed;
+                btnUsers.Visibility = Visibility.Collapsed;
+                btnServices.Visibility = Visibility.Collapsed;
+                btnClients.Visibility = Visibility.Collapsed;
+                // Только заказы доступны
+            }
+            else if (user.Role == "Receptionist")
+            {
+                // Приемщик имеет доступ к заказам, клиентам и услугам
+                btnMaterials.Visibility = Visibility.Collapsed;
+                btnReports.Visibility = Visibility.Collapsed;
+                btnUsers.Visibility = Visibility.Collapsed;
+            }
+            // Admin имеет полный доступ
+        }
+
+        private string GetRoleDisplayName(string role)
+        {
+            switch (role)
+            {
+                case "Admin": return "Администратор";
+                case "Receptionist": return "Приемщик";
+                case "User": return "Пользователь";
+                default: return role;
             }
         }
+
         private void NavigateToOrdersPage()
         {
-            MainFrame.Navigate(new OrdersPage());
+            var user = MainWindow.Instance.CurrentUser;
+            if (user.Role == "User")
+            {
+                MainFrame.Navigate(new UserOrdersPage());
+            }
+            else
+            {
+                MainFrame.Navigate(new OrdersPage());
+            }
         }
+
         private void btnOrders_Click(object sender, RoutedEventArgs e)
         {
             NavigateToOrdersPage();
@@ -109,7 +143,14 @@ namespace LaundryManagementSystem.Pages
 
         private void btnUsers_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.Instance.MainFrame.Navigate(new UsersManagementPage());
+            if (MainWindow.Instance.CurrentUser.Role == "Admin")
+            {
+                MainWindow.Instance.MainFrame.Navigate(new UsersManagementPage());
+            }
+            else
+            {
+                MainWindow.Instance.ShowError("Недостаточно прав для управления пользователями");
+            }
         }
     }
 }

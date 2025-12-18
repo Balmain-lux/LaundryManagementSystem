@@ -38,15 +38,15 @@
 
         <TextBlock Grid.Row="3" Text="Текущий остаток:" FontWeight="Bold"/>
         <TextBox Grid.Row="3" x:Name="txtCurrentStock" Height="35" Margin="0,25,0,15" 
-                 Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
+                 Padding="10" FontSize="11" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
 
         <TextBlock Grid.Row="4" Text="Минимальный запас:" FontWeight="Bold"/>
         <TextBox Grid.Row="4" x:Name="txtMinStock" Height="35" Margin="0,25,0,15" 
-                 Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
+                 Padding="10" FontSize="11" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
 
         <TextBlock Grid.Row="5" Text="Цена за единицу:" FontWeight="Bold"/>
         <TextBox Grid.Row="5" x:Name="txtUnitPrice" Height="35" Margin="0,25,0,20" 
-                 Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
+                 Padding="10" FontSize="11" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
 
         <TextBlock Grid.Row="6" x:Name="txtMessage" Foreground="Green" 
                    TextWrapping="Wrap" Margin="0,10,0,0" HorizontalAlignment="Center"

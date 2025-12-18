@@ -32,25 +32,27 @@
 
                 <TextBlock Grid.Row="1" Text="ФИО:" FontWeight="Bold"/>
                 <TextBox Grid.Row="1" x:Name="txtFullName" Height="35" Margin="0,25,0,15" 
-                         Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
+                         Padding="10" FontSize="11" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
 
-                <TextBlock Grid.Row="2" Text="Логин:" FontWeight="Bold"/>
+                <TextBlock Grid.Row="2" Text="Логин (телефон):" FontWeight="Bold"/>
                 <TextBox Grid.Row="2" x:Name="txtUsername" Height="35" Margin="0,25,0,15" 
-                         Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
+                         Padding="10" FontSize="11" Background="#F5F5F5" BorderBrush="#CCCCCC"
+                         ToolTip="Логином будет ваш номер телефона"/>
 
                 <TextBlock Grid.Row="3" Text="Пароль:" FontWeight="Bold"/>
                 <PasswordBox Grid.Row="3" x:Name="txtPassword" Height="35" Margin="0,25,0,15" 
-                             Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
+                             Padding="10" FontSize="11" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
 
                 <TextBlock Grid.Row="4" Text="Подтверждение пароля:" FontWeight="Bold"/>
                 <PasswordBox Grid.Row="4" x:Name="txtConfirmPassword" Height="35" Margin="0,25,0,15" 
-                             Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
+                             Padding="10" FontSize="11" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
 
                 <TextBlock Grid.Row="5" Text="Роль:" FontWeight="Bold"/>
                 <ComboBox Grid.Row="5" x:Name="cmbRole" Height="35" Margin="0,25,0,20"
-                          Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC">
-                    <ComboBoxItem Content="Receptionist" IsSelected="True"/>
-                    <ComboBoxItem Content="Admin"/>
+                          Padding="10" FontSize="11" Background="#F5F5F5" BorderBrush="#CCCCCC">
+                    <ComboBoxItem Content="User" IsSelected="True" ToolTip="Обычный пользователь (клиент)"/>
+                    <ComboBoxItem Content="Receptionist" ToolTip="Приемщик заказов"/>
+                    <ComboBoxItem Content="Admin" ToolTip="Администратор системы"/>
                 </ComboBox>
 
                 <TextBlock Grid.Row="6" x:Name="txtMessage" Foreground="Green" 

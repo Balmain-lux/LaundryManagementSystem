@@ -29,11 +29,12 @@
 
                 <TextBlock Grid.Row="1" Text="Логин:" FontWeight="Bold"/>
                 <TextBox Grid.Row="1" x:Name="txtLogin" Height="35" Margin="0,25,0,15" 
-                         Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
+                         Padding="10" FontSize="11
+                         " Background="#F5F5F5" BorderBrush="#CCCCCC"/>
 
                 <TextBlock Grid.Row="2" Text="Пароль:" FontWeight="Bold"/>
                 <PasswordBox Grid.Row="2" x:Name="txtPassword" Height="35" Margin="0,25,0,20" 
-                             Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
+                             Padding="10" FontSize="11" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
 
                 <Button x:Name="LoginButton" Grid.Row="3" Content="Войти" Click="LoginButton_Click"
                         Height="40" Background="#0078D4" Foreground="White" 

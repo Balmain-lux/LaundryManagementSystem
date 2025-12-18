@@ -25,19 +25,19 @@
 
         <TextBlock Grid.Row="1" Text="ФИО:" FontWeight="Bold"/>
         <TextBox Grid.Row="1" x:Name="txtFullName" Height="35" Margin="0,25,0,15" 
-                 Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
+                 Padding="10" FontSize="11" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
 
         <TextBlock Grid.Row="2" Text="Телефон:" FontWeight="Bold"/>
         <TextBox Grid.Row="2" x:Name="txtPhone" Height="35" Margin="0,25,0,15" 
-                 Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
+                 Padding="10" FontSize="11" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
 
         <TextBlock Grid.Row="3" Text="Email:" FontWeight="Bold"/>
         <TextBox Grid.Row="3" x:Name="txtEmail" Height="35" Margin="0,25,0,15" 
-                 Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
+                 Padding="10" FontSize="11" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
 
         <TextBlock Grid.Row="4" Text="Бонусные баллы:" FontWeight="Bold"/>
         <TextBox Grid.Row="4" x:Name="txtBonusPoints" Height="35" Margin="0,25,0,20" 
-                 Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC"
+                 Padding="10" FontSize="11" Background="#F5F5F5" BorderBrush="#CCCCCC"
                  Text="0"/>
 
         <TextBlock Grid.Row="5" x:Name="txtClientInfo" Foreground="Blue" 

@@ -89,6 +89,17 @@ namespace LaundryManagementSystem.Pages
                         return;
                     }
 
+                    // Проверяем, есть ли у пользователя заказы (если это User)
+                    if (user.Role == "User")
+                    {
+                        var client = Connection.entities.Clients.FirstOrDefault(c => c.Phone == user.Username);
+                        if (client != null && client.Orders.Any())
+                        {
+                            MainWindow.Instance.ShowError("Нельзя удалить пользователя, у которого есть активные заказы");
+                            return;
+                        }
+                    }
+
                     // Нельзя удалить последнего администратора
                     if (user.Role == "Admin")
                     {
@@ -101,7 +112,7 @@ namespace LaundryManagementSystem.Pages
                     }
 
                     var result = MessageBox.Show(
-                        $"Вы уверены, что хотите удалить пользователя?\nЛогин: {user.Username}\nФИО: {user.FullName}",
+                        $"Вы уверены, что хотите удалить пользователя?\nЛогин: {user.Username}\nФИО: {user.FullName}\nРоль: {user.Role}",
                         "Подтверждение удаления",
                         MessageBoxButton.YesNo,
                         MessageBoxImage.Question);
@@ -110,6 +121,16 @@ namespace LaundryManagementSystem.Pages
                     {
                         try
                         {
+                            // Если это User, удаляем и клиентскую запись
+                            if (user.Role == "User")
+                            {
+                                var client = Connection.entities.Clients.FirstOrDefault(c => c.Phone == user.Username);
+                                if (client != null)
+                                {
+                                    Connection.entities.Clients.Remove(client);
+                                }
+                            }
+
                             Connection.entities.Users.Remove(user);
                             Connection.entities.SaveChanges();
 

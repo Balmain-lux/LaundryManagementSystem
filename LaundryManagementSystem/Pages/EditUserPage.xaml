@@ -29,20 +29,21 @@
 
         <TextBlock Grid.Row="2" Text="ФИО:" FontWeight="Bold"/>
         <TextBox Grid.Row="2" x:Name="txtFullName" Height="35" Margin="0,25,0,15" 
-                 Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
+                 Padding="10" FontSize="11" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
 
-        <TextBlock Grid.Row="3" Text="Логин:" FontWeight="Bold"/>
+        <TextBlock Grid.Row="3" Text="Логин (телефон):" FontWeight="Bold"/>
         <TextBox Grid.Row="3" x:Name="txtUsername" Height="35" Margin="0,25,0,15" 
-                 Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
+                 Padding="10" FontSize="11" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
 
         <TextBlock Grid.Row="4" Text="Новый пароль (оставьте пустым, если не меняется):" 
                    FontWeight="Bold" TextWrapping="Wrap"/>
         <PasswordBox Grid.Row="4" x:Name="txtPassword" Height="35" Margin="0,25,0,15" 
-                     Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
+                     Padding="10" FontSize="11" Background="#F5F5F5" BorderBrush="#CCCCCC"/>
 
         <TextBlock Grid.Row="5" Text="Роль:" FontWeight="Bold"/>
         <ComboBox Grid.Row="5" x:Name="cmbRole" Height="35" Margin="0,25,0,20"
                   Padding="10" FontSize="14" Background="#F5F5F5" BorderBrush="#CCCCCC">
+            <ComboBoxItem Content="User"/>
             <ComboBoxItem Content="Receptionist"/>
             <ComboBoxItem Content="Admin"/>
         </ComboBox>
@@ -59,7 +60,7 @@
             <Button x:Name="SaveUser" Content="💾 Сохранить" Click="SaveUser_Click"
                     Padding="20,10" Margin="5" Background="#28a745" Foreground="White" 
                     FontWeight="Bold" BorderThickness="0" Cursor="Hand"/>
-            <Button x:Name="Cancel" Content="❌ Отмена" Click="Cancel_Click" 
+            <Button x:Name="Cancel" Content="❌ Отмена" Click="Cancel_Click"
                     Padding="20,10" Margin="5" Background="#dc3545" Foreground="White"
                     FontWeight="Bold" BorderThickness="0" Cursor="Hand"/>
         </StackPanel>

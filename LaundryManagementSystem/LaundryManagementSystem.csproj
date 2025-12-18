@@ -184,6 +184,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\UserNewOrderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserOrdersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\UsersManagementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -231,6 +239,12 @@
     </Compile>
     <Compile Include="Pages\ServicesPage.xaml.cs">
       <DependentUpon>ServicesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserNewOrderPage.xaml.cs">
+      <DependentUpon>UserNewOrderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserOrdersPage.xaml.cs">
+      <DependentUpon>UserOrdersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\UsersManagementPage.xaml.cs">
       <DependentUpon>UsersManagementPage.xaml</DependentUpon>

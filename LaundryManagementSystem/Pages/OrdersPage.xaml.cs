@@ -25,6 +25,14 @@ namespace LaundryManagementSystem.Pages
         public OrdersPage()
         {
             InitializeComponent();
+            var currentUser = MainWindow.Instance.CurrentUser;
+            if (currentUser?.Role == "User")
+            {
+                // Пользователям показываем сообщение и перенаправляем
+                MainWindow.Instance.ShowMessage("Пользователи работают с заказами через раздел 'Мои заказы'");
+                MainWindow.Instance.MainFrame.Navigate(new UserOrdersPage());
+                return;
+            }
             LoadOrders();
         }
 

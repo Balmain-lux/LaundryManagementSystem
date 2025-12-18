@@ -35,6 +35,12 @@ namespace LaundryManagementSystem.Pages
             string confirmPassword = txtConfirmPassword.Password;
             string role = (cmbRole.SelectedItem as ComboBoxItem)?.Content.ToString();
 
+            // Устанавливаем роль "User" по умолчанию, если не выбрана
+            if (string.IsNullOrEmpty(role))
+            {
+                role = "User";
+            }
+
             if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(username) ||
                string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
             {
@@ -60,6 +66,13 @@ namespace LaundryManagementSystem.Pages
                 return;
             }
 
+            // Проверяем телефон (логин должен быть в формате телефона для пользователей)
+            if (role == "User" && !IsValidPhone(username))
+            {
+                ShowError("Для роли 'Пользователь' логин должен быть номером телефона (минимум 10 цифр)");
+                return;
+            }
+
             // Проверка уникальности логина
             if (Connection.entities.Users.Any(u => u.Username == username))
             {
@@ -82,6 +95,22 @@ namespace LaundryManagementSystem.Pages
                 Connection.entities.Users.Add(newUser);
                 Connection.entities.SaveChanges();
 
+                // Если это пользователь, создаем клиентскую запись
+                if (role == "User")
+                {
+                    var client = new Clients
+                    {
+                        FullName = fullName,
+                        Phone = username,
+                        Email = null,
+                        BonusPoints = 0,
+                        RegistrationDate = DateTime.Now
+                    };
+
+                    Connection.entities.Clients.Add(client);
+                    Connection.entities.SaveChanges();
+                }
+
                 ShowSuccess($"Пользователь {username} успешно зарегистрирован!\nРоль: {GetRoleDisplayName(role)}");
 
                 // Очистка полей после успешной регистрации
@@ -91,7 +120,6 @@ namespace LaundryManagementSystem.Pages
             {
                 ShowError($"Ошибка регистрации: {ex.Message}");
             }
-
         }
 
         private bool IsValidUsername(string username)
@@ -100,9 +128,22 @@ namespace LaundryManagementSystem.Pages
             return Regex.IsMatch(username, @"^[a-zA-Z0-9_]+$");
         }
 
+        private bool IsValidPhone(string phone)
+        {
+            // Простая валидация телефона - минимум 10 цифр
+            string digitsOnly = new string(phone.Where(char.IsDigit).ToArray());
+            return digitsOnly.Length >= 10;
+        }
+
         private string GetRoleDisplayName(string role)
         {
-            return role == "Admin" ? "Администратор" : "Приемщик";
+            switch (role)
+            {
+                case "Admin": return "Администратор";
+                case "Receptionist": return "Приемщик";
+                case "User": return "Пользователь (клиент)";
+                default: return role;
+            }
         }
 
         private void ShowError(string message)

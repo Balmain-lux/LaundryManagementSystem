@@ -43,6 +43,33 @@ namespace LaundryManagementSystem.Pages
 
             if (user != null)
             {
+                // Для роли User проверяем наличие клиентской записи
+                if (user.Role == "User")
+                {
+                    var client = Connection.entities.Clients.FirstOrDefault(c => c.Phone == user.Username);
+                    if (client == null)
+                    {
+                        // Создаем клиентскую запись
+                        client = new Clients
+                        {
+                            FullName = user.FullName,
+                            Phone = user.Username,
+                            RegistrationDate = DateTime.Now,
+                            BonusPoints = 0
+                        };
+                        Connection.entities.Clients.Add(client);
+                        try
+                        {
+                            Connection.entities.SaveChanges();
+                        }
+                        catch (Exception ex)
+                        {
+                            // Если не удалось сохранить клиента, все равно входим
+                            Console.WriteLine($"Ошибка создания клиента: {ex.Message}");
+                        }
+                    }
+                }
+
                 MainWindow.Instance.NavigateToMainPage(user);
             }
             else
